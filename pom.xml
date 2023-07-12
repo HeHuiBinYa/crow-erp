@@ -6,6 +6,11 @@
 	<modules>
 		<module>crow-erp-gateway</module>
 		<module>crow-erp-public-model</module>
+		<module>crow-erp-user</module>
+		<module>crow-erp-user/crow-erp-user-auth</module>
+		<module>crow-erp-user/crow-erp-user-role</module>
+		<module>crow-erp-user/crow-erp-user-resou</module>
+		<module>crow-erp-user/crow-erp-user-core</module>
 	</modules>
 
 	<parent>
@@ -39,6 +44,14 @@
 				<artifactId>lombok</artifactId>
 				<version>1.18.28</version>
 			</dependency>
+
+			<!-- 参数校验 -->
+			<dependency>
+				<groupId>org.hibernate.validator</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>8.0.0.Final</version>
+			</dependency>
+
 
 			<!-- 新增模块必须添加 -->
 			<dependency>

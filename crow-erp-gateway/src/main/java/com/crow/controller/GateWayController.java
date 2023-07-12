@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 @RestController
 public class GateWayController {
-
     @Value("${info.name}")
     private String name;
 

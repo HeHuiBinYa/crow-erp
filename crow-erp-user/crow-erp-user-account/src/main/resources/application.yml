@@ -1,9 +1,9 @@
 server:
-  port: 1000
+  port: 3000
 
 spring:
   application:
-    name: crow-erp-gateway
+    name: crow-erp-user-account
   cloud:
     nacos:
       discovery:
@@ -15,14 +15,5 @@ spring:
         namespace: crow-erp-config # 命名空间
         group: crow-erp-config     # 组名
         file-extension: yaml       # 扩展名
-    gateway:
-      routes:
-        - id: crow-erp-user-account
-          uri: lb://crow-erp-user-account
-          predicates:
-            - Path=/user/account/**
-      discovery:
-        locator:
-          enabled: true
   config:
-    import: nacos:crow-erp-gateway-config # 多个已 , 隔开
+    import: nacos:crow-erp-user-account-config,nacos:crow-erp-public # 多个已 , 隔开
