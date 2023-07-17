@@ -10,8 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>crow-erp-public-model</artifactId>
+    <packaging>pom</packaging>
 
     <name>crow-erp-public-model</name>
+    <modules>
+        <module>crow-erp-user-api</module>
+        <module>crow-erp-public-api</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

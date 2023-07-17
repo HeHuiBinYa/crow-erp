@@ -1,6 +1,6 @@
 package com.crow.mapper;
 
-import com.crow.model.user.Account;
+import com.crow.model.Account;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

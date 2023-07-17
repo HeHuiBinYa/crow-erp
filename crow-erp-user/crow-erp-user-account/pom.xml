@@ -24,7 +24,12 @@
         <!-- 公共类模块 redis -->
         <dependency>
             <groupId>com.crow</groupId>
-            <artifactId>crow-erp-public-model</artifactId>
+            <artifactId>crow-erp-user-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.crow</groupId>
+            <artifactId>crow-erp-public-api</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -51,7 +56,6 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
 
         <!-- 自启动 -->
         <dependency>

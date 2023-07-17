@@ -1,6 +1,6 @@
 package com.crow.service;
 
-import com.crow.model.user.Account;
+import com.crow.model.Account;
 
 /**
  * @PackageName:IntelliJ IDEA

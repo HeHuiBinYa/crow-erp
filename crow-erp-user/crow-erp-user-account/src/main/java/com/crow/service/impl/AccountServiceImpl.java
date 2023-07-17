@@ -1,7 +1,7 @@
 package com.crow.service.impl;
 
 import com.crow.mapper.AccountMapper;
-import com.crow.model.user.Account;
+import com.crow.model.Account;
 import com.crow.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

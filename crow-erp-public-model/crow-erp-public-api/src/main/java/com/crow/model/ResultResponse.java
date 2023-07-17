@@ -1,4 +1,4 @@
-package com.crow.response;
+package com.crow.model;
 
 import lombok.Data;
 
@@ -62,7 +62,7 @@ public class ResultResponse implements Serializable {
      * @param code  状态码
      * @param message 携带提示消息
      */
-    public ResultResponse(Integer code,String message){
+    public ResultResponse(Integer code, String message){
         this.code = code;
         this.err = true;
         this.message = message;

@@ -7,11 +7,7 @@
 		<module>crow-erp-gateway</module>
 		<module>crow-erp-public-model</module>
 		<module>crow-erp-user</module>
-		<module>crow-erp-user/crow-erp-user-auth</module>
-		<module>crow-erp-user/crow-erp-user-role</module>
-		<module>crow-erp-user/crow-erp-user-resou</module>
-		<module>crow-erp-user/crow-erp-user-core</module>
-	</modules>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -69,9 +65,16 @@
 				<artifactId>spring-cloud-starter-gateway</artifactId>
 				<version>4.0.3</version>
 			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+				<version>4.0.3</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-openfeign</artifactId>
 				<version>4.0.3</version>
 			</dependency>
 

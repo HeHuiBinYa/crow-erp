@@ -1,19 +1,10 @@
-server:
-  port: 3000
-
 spring:
-  application:
-    name: crow-erp-user-account
   cloud:
     nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-        namespace: crow-erp-register # 命名空间
-        group: crow-erp-register     # 组名
       config:
-        server-addr: ${spring.cloud.nacos.discovery.server-addr}
-        namespace: crow-erp-config # 命名空间
-        group: crow-erp-config     # 组名
-        file-extension: yaml       # 扩展名
+        server-addr: 127.0.0.1:8848  # nacos地址:端口号
+        namespace: crow-erp-config   # 命名空间
+        group: crow-erp-config       # 组名
+        file-extension: yaml         # 扩展名
   config:
     import: nacos:crow-erp-user-account-config,nacos:crow-erp-public # 多个已 , 隔开

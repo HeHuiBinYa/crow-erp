@@ -1,4 +1,4 @@
-package com.crow.model.user;
+package com.crow.model;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;

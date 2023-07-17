@@ -13,10 +13,10 @@
     <packaging>pom</packaging>
 
     <name>crow-erp-user</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
     <modules>
         <module>crow-erp-user-account</module>
+        <module>crow-erp-user-system</module>
     </modules>
 
     <properties>

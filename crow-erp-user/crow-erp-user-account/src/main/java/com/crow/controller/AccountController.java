@@ -1,17 +1,12 @@
 package com.crow.controller;
 
-import com.crow.model.user.Account;
-import com.crow.response.ResultResponse;
+import com.crow.model.ResultResponse;
+import com.crow.model.Account;
 import com.crow.service.AccountService;
-import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.BindException;
 
 /**
  * @PackageName:IntelliJ IDEA
@@ -34,9 +29,7 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResultResponse login(String username,String password){
-        System.out.println(username);
-        System.out.println(password);
+    public ResultResponse login(String username, String password){
         Account acc = accountService.queryAccountUsernameByPassword(username, password);
 
         if (acc == null){
@@ -45,5 +38,4 @@ public class AccountController {
 
         return new ResultResponse(acc);
     }
-
 }
