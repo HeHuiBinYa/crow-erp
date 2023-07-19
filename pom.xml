@@ -6,7 +6,8 @@
 	<modules>
 		<module>crow-erp-gateway</module>
 		<module>crow-erp-public-model</module>
-		<module>crow-erp-user</module>
+		<module>crow-erp-auth</module>
+        <module>crow-erp-system</module>
     </modules>
 
 	<parent>

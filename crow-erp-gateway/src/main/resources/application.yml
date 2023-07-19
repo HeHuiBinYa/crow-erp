@@ -7,4 +7,4 @@ spring:
         group: crow-erp-config     # 组名
         file-extension: yaml       # 扩展名
   config:
-    import: nacos:crow-erp-gateway-config # 多个已 , 隔开
+    import: nacos:crow-erp-gateway-config,nacos:crow-erp-public # 多个已 , 隔开

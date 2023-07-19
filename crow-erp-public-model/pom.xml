@@ -14,8 +14,8 @@
 
     <name>crow-erp-public-model</name>
     <modules>
-        <module>crow-erp-user-api</module>
         <module>crow-erp-public-api</module>
+        <module>crow-erp-auth-api</module>
     </modules>
 
     <properties>
@@ -32,7 +32,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!-- 数据校验 -->

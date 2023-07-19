@@ -19,7 +19,7 @@ public class ResultResponse implements Serializable {
     private Integer code;   // 响应状态码
     private Boolean err;    // 是否存在异常
     private String message; // 携带消息
-    private Object Date;    // 携带数据
+    private Object data;    // 携带数据
 
     /**
      * 请求成功 200
@@ -29,7 +29,7 @@ public class ResultResponse implements Serializable {
         this.code = 200;
         this.err = false;
         this.message = "请求成功";
-        Date = date;
+        this.data = date;
     }
 
     /**
@@ -43,7 +43,7 @@ public class ResultResponse implements Serializable {
         this.code = code;
         this.err = err;
         this.message = message;
-        Date = date;
+        this.data = date;
     }
 
     /**
@@ -54,7 +54,7 @@ public class ResultResponse implements Serializable {
         this.code = 333;
         this.err = true;
         this.message = message;
-        Date = null;
+        this.data = null;
     }
 
     /**
@@ -66,6 +66,6 @@ public class ResultResponse implements Serializable {
         this.code = code;
         this.err = true;
         this.message = message;
-        Date = null;
+        this.data = null;
     }
 }
