@@ -13,5 +13,6 @@ import com.crow.model.Account;
  */
 public interface AccountService {
     Account queryAccountUsernameByPassword(String username, String password);
+    Account queryAccountTok(String tok);
     Boolean insertAccount(String username, String password);
 }

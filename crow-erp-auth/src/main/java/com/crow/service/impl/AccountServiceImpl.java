@@ -34,6 +34,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account queryAccountTok(String tok) {
+        return accountMapper.queryAccountTok(tok);
+    }
+
+    @Override
     public Boolean insertAccount(String username, String password) {
         return accountMapper.insertAccount(username,password);
     }

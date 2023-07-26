@@ -8,7 +8,11 @@
 		<module>crow-erp-public-model</module>
 		<module>crow-erp-auth</module>
         <module>crow-erp-system</module>
-    </modules>
+        <module>crow-erp-staff</module>
+		<module>crow-erp-design</module>
+        <module>crow-erp-inventopy</module>
+		<module>crow-erp-product</module>
+	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

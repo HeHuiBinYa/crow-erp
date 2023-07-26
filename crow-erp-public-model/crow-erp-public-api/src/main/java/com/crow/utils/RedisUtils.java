@@ -25,10 +25,7 @@ public class RedisUtils {
     public void seTex(Object key,Object value,Long time){
         ValueOperations string = redisTemplate.opsForValue();
         string.set(key,value);
-        Boolean expire = redisTemplate.expire(key, time, TimeUnit.MINUTES);
-        if (expire){
-            System.out.println("设置完毕!");
-        }
+        redisTemplate.expire(key, time, TimeUnit.MINUTES);
     }
 
     /**

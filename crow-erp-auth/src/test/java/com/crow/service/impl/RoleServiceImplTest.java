@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.UUID;
 
 @SpringBootTest
 public class RoleServiceImplTest {
@@ -18,5 +19,10 @@ public class RoleServiceImplTest {
         List<Role> roles = roleService.selectRoleList();
 
         roles.forEach(System.out::println);
+    }
+
+    @Test
+    void uuid(){
+        System.out.println(UUID.randomUUID());
     }
 }

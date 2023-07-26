@@ -30,6 +30,9 @@ public interface AccountMapper {
     })
     Account queryAccountUsernameByPassword(@Param("username") String username, @Param("password") String password);
 
+    @Select("select * from SYS_ACCOUNT where tok = #{tok}")
+    Account queryAccountTok(@Param("tok") String tok);
+
     /**
      * 添加账户
      * @param username
