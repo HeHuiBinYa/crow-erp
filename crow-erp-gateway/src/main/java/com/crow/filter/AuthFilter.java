@@ -32,29 +32,29 @@ public class AuthFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        String path = String.valueOf(exchange.getRequest().getPath());
-        for (String s : open) {
-            if (path.equals(s)){
-                return chain.filter(exchange);
-            }
-        }
-
-        // 获取传入的tok
-        String tok = exchange.getRequest().getQueryParams().getFirst("tok");
-        System.out.println(tok);
-        if (tok != null){
-            if (redisUtils.exists(tok)){
-                // 获取登录后的tok
-                String auth = (String) redisUtils.getKey(tok);
-                System.out.println("取出后："+auth);
-                if (tok.equals(auth)){
-                    System.out.println("权限完毕");
-                    return chain.filter(exchange);
-                }
-            }
-        }
-
-        System.out.println("失败");
+//        String path = String.valueOf(exchange.getRequest().getPath());
+//        for (String s : open) {
+//            if (path.equals(s)){
+//                return chain.filter(exchange);
+//            }
+//        }
+//
+//        // 获取传入的tok
+//        String tok = exchange.getRequest().getQueryParams().getFirst("tok");
+//        System.out.println(tok);
+//        if (tok != null){
+//            if (redisUtils.exists(tok)){
+//                // 获取登录后的tok
+//                String auth = (String) redisUtils.getKey(tok);
+//                System.out.println("取出后："+auth);
+//                if (tok.equals(auth)){
+//                    System.out.println("权限完毕");
+//                    return chain.filter(exchange);
+//                }
+//            }
+//        }
+//
+//        System.out.println("失败");
         return chain.filter(exchange);
     }
 

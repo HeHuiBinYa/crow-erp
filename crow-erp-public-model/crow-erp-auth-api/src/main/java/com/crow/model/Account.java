@@ -1,6 +1,5 @@
 package com.crow.model;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -24,6 +23,5 @@ public class Account implements Serializable {
     private String password;
     private String tok;
     private Byte freeze;
-
     private Role role;
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,5 +25,10 @@ public class RoleServiceImplTest {
     @Test
     void uuid(){
         System.out.println(UUID.randomUUID());
+    }
+
+    @Test
+    void dateText(){
+        System.out.println(LocalDate.now());
     }
 }
