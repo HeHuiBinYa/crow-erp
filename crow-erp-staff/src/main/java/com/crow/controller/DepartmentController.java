@@ -31,6 +31,11 @@ public class DepartmentController {
         this.redisUtils = redisUtils;
     }
 
+    /**
+     * 添加部门
+     * @param department
+     * @return
+     */
     @PostMapping("/increase_department")
     public ResultResponse increase(Department department){
         if (department.getDname() == null){
@@ -53,6 +58,30 @@ public class DepartmentController {
         return new ResultResponse("系统繁忙!");
     }
 
+    /**
+     * 删除部门
+     * @param did
+     * @return
+     */
+    @PostMapping("/omit_department")
+    public ResultResponse edit(Integer did){
+        if (did != null){
+            Boolean bool = departmentService.deleteDepatment(did);
+
+            if (bool){
+                redisUtils.flushDb();
+                return new ResultResponse(200,"删除部门完毕");
+            }
+        }
+
+        return new ResultResponse("系统繁忙!");
+    }
+
+    /**
+     * 修改部门
+     * @param department
+     * @return
+     */
     @PostMapping("/edit_department")
     public ResultResponse edit(Department department){
         if (department.getDname().isEmpty()){
@@ -75,6 +104,14 @@ public class DepartmentController {
         return new ResultResponse("系统繁忙!");
     }
 
+    /**
+     * 分页条件查询
+     * @param size
+     * @param pageSize
+     * @param department
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/page_department")
     public ResultResponse page(Integer size,Integer pageSize,Department department) throws Exception {
         if (department.getDname().isEmpty()){

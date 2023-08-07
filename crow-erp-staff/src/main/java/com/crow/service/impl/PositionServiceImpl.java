@@ -33,6 +33,11 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
+    public Boolean updatePosition(Position position) {
+        return positionMapper.updateDepatment(position);
+    }
+
+    @Override
     public IPage pagePosition(Integer size, Integer pageSize, Position position) {
         if (size <= 0){
             size = 1;

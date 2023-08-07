@@ -23,6 +23,9 @@ public interface DepartmentMapper {
     @Insert("insert into sys_department(dname,position,duty) values (#{dname},#{position},#{duty})")
     Boolean insertDepatment(Department department);
 
+    @Delete("delete from sys_department where did=#{did}")
+    Boolean deleteDepatment(Integer did);
+
     @Update({
             "<script>",
               "update sys_department",

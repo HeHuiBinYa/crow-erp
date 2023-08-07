@@ -32,6 +32,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public Boolean deleteDepatment(Integer did) {
+        return departmentMapper.deleteDepatment(did);
+    }
+
+
+    @Override
     public Boolean updateDepatment(Department department) {
         return departmentMapper.updateDepatment(department);
     }

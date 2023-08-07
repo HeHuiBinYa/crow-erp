@@ -3,10 +3,7 @@ package com.crow.mapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.crow.model.Department;
 import com.crow.model.Position;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * @PackageName:IntelliJ IDEA
@@ -27,6 +24,20 @@ public interface PositionMapper {
     @Insert("insert into sys_position(plevel,psalary,position) values (#{plevel},#{psalary},#{position})")
     Boolean insertPosition(Position position);
 
+    @Update({
+            "<script>",
+            "update sys_position",
+            "<set>",
+            "updated=now()",
+            "<if test='plevel'>, plevel=#{plevel}</if>",
+            "<if test='psalary'>, psalary=#{psalary}</if>",
+            "<if test='position'>, position=#{position}</if>",
+            "</set>",
+            "where pid = #{pid}",
+            "</script>"
+    })
+    Boolean updateDepatment(Position position);
+
     /**
      * 高级条件分页查询
      * @param page
@@ -40,7 +51,7 @@ public interface PositionMapper {
             "<if test='position.plevel'>dname like  concat('%',#{position.plevel},'%')</if>",
             "<if test='position.psalary'>or position like  concat('%',#{position.psalary},'%')</if>",
             "<if test='position.position'>or duty like concat('%',#{position.position},'%')</if>",
-            "</where> order by did desc",
+            "</where> order by updated desc",
             "</script>"
     })
     IPage<Department> pagePosition(IPage page, @Param("position") Position position);
