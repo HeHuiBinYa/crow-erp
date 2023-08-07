@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 部门表
@@ -20,6 +21,6 @@ public class Department implements Serializable {
     private String dname;  // 部门名称
     private String position;  // 部门职务
     private String duty; // 部门职责
-    private LocalDate created; // 创建时间
-    private LocalDate updated; // 修改时间
+    private LocalDateTime created; // 创建时间
+    private LocalDateTime updated; // 修改时间
 }

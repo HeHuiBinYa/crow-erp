@@ -32,6 +32,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public Boolean updateDepatment(Department department) {
+        return departmentMapper.updateDepatment(department);
+    }
+
+    @Override
     public IPage pageDepatment(Integer size, Integer pageSize, Department department) {
         if (size <= 0){
             size = 1;

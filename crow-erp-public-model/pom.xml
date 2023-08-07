@@ -17,6 +17,7 @@
         <module>crow-erp-public-api</module>
         <module>crow-erp-auth-api</module>
         <module>crow-erp-staff-api</module>
+        <module>crow-erp-mvc-config-api</module>
     </modules>
 
     <properties>

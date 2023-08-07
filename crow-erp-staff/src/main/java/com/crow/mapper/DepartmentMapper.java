@@ -1,12 +1,8 @@
 package com.crow.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.model.Department;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * 部门
@@ -27,14 +23,28 @@ public interface DepartmentMapper {
     @Insert("insert into sys_department(dname,position,duty) values (#{dname},#{position},#{duty})")
     Boolean insertDepatment(Department department);
 
+    @Update({
+            "<script>",
+              "update sys_department",
+                "<set>",
+                  "updated=now()",
+                  "<if test='dname'>, dname=#{dname}</if>",
+                  "<if test='position'>, position=#{position}</if>",
+                  "<if test='duty'>, duty=#{duty}</if>",
+                "</set>",
+                "where did = #{did}",
+            "</script>"
+    })
+    Boolean updateDepatment(Department department);
+
     @Select({
             "<script>",
               "select * from sys_department",
                "<where>",
-                  "<if test='department.dname != null'>dname like  concat('%',#{department.dname},'%'})</if>",
-                  "<if test='department.position !=  null'>or position like  concat('%',#{department.position},'%'})</if>",
-                  "<if test='department.duty != null'>or duty like concat('%',#{department.duty},'%'})</if>",
-               "</where>",
+                  "<if test='department.dname'>dname like  concat('%',#{department.dname},'%')</if>",
+                  "<if test='department.position'>or position like  concat('%',#{department.position},'%')</if>",
+                  "<if test='department.duty'>or duty like concat('%',#{department.duty},'%')</if>",
+               "</where> order by updated desc",
             "</script>"
     })
     IPage<Department> pageDepatment(IPage page,@Param("department") Department department);

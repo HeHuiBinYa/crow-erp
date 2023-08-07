@@ -5,7 +5,6 @@ import com.crow.model.Department;
 import com.crow.model.ResultResponse;
 import com.crow.service.DepartmentService;
 import com.crow.utils.RedisUtils;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2023/8/3 10:02
  * @Role
  */
-@Log4j2
 @RestController
 @RequestMapping("/staff")
 public class DepartmentController {
@@ -33,9 +31,8 @@ public class DepartmentController {
         this.redisUtils = redisUtils;
     }
 
-    @PostMapping("/increase")
+    @PostMapping("/increase_department")
     public ResultResponse increase(Department department){
-        System.out.println(department);
         if (department.getDname() == null){
             return new ResultResponse("新添加部门职位不能为空!");
         }
@@ -49,24 +46,47 @@ public class DepartmentController {
         Boolean bool = departmentService.insertDepatment(department);
 
         if (bool){
+            redisUtils.flushDb();
             return new ResultResponse(200,"新部门添加完毕");
         }
 
         return new ResultResponse("系统繁忙!");
     }
 
-    @PostMapping("/page")
-    public ResultResponse page(Integer size,Integer pageSize,Department department){
-        System.out.println(size);
-        System.out.println(pageSize);
-        System.out.println(department);
-        if (redisUtils.exists("department"+size+"-"+pageSize)){
-            System.out.println("缓存");
-            return new ResultResponse(redisUtils.getKey("department"+size+"-"+pageSize));
-        }else{
-            IPage iPage = departmentService.pageDepatment(size, pageSize, department);
-            redisUtils.seTex("department"+size+"-"+pageSize,iPage,30L);
-            return new ResultResponse(iPage);
+    @PostMapping("/edit_department")
+    public ResultResponse edit(Department department){
+        if (department.getDname().isEmpty()){
+            department.setDname(null);
         }
+        if (department.getDuty().isEmpty()){
+            department.setDuty(null);
+        }
+        if (department.getPosition().isEmpty()){
+            department.setPosition(null);
+        }
+
+        Boolean bool = departmentService.updateDepatment(department);
+
+        if (bool){
+            redisUtils.flushDb();
+            return new ResultResponse(200,"修改部门完毕");
+        }
+
+        return new ResultResponse("系统繁忙!");
+    }
+
+    @PostMapping("/page_department")
+    public ResultResponse page(Integer size,Integer pageSize,Department department) throws Exception {
+        if (department.getDname().isEmpty()){
+            department.setDname(null);
+        }
+        if (department.getDuty().isEmpty()){
+            department.setDuty(null);
+        }
+        if (department.getPosition().isEmpty()){
+            department.setPosition(null);
+        }
+        IPage iPage = departmentService.pageDepatment(size, pageSize, department);
+        return new ResultResponse(iPage);
     }
 }

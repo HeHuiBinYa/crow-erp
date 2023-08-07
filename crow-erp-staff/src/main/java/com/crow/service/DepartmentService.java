@@ -15,5 +15,6 @@ import com.crow.model.Department;
  */
 public interface DepartmentService {
     Boolean insertDepatment(Department department);
+    Boolean updateDepatment(Department department);
     IPage pageDepatment(Integer size,Integer pageSize, Department department);
 }
