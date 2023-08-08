@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class StringUtilsTest {
     @Test
     void ValidationNull_Test() throws Exception {
-        ResultResponse response = new ResultResponse("");
+        String name = "AEC";
+        System.out.println(StringUtils.odd_numbers(name));
     }
 }

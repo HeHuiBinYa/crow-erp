@@ -36,9 +36,15 @@ public class PositionController {
         this.positionService = positionService;
     }
 
+    /**
+     * 添加职位
+     * @param position
+     * @return
+     */
     @PostMapping("/increase_position")
     public ResultResponse increase(Position position){
-        if (position.getPlevel() == null){
+        System.out.println(position);
+        if (position.getPlevel().isEmpty()){
             return new ResultResponse("新添加部门职位不能为空!");
         }
         if (position.getPsalary() == null){
@@ -57,7 +63,29 @@ public class PositionController {
         return new ResultResponse("系统繁忙!");
     }
 
+    /**
+     * 删除职位
+     * @param pid
+     * @return
+     */
+    @PostMapping("/omit_position")
+    public ResultResponse edit(Integer pid){
+        if (pid != null){
+            Boolean bool = positionService.deletePosition(pid);
 
+            if (bool){
+                return new ResultResponse(200,"删除部门完毕");
+            }
+        }
+
+        return new ResultResponse("系统繁忙!");
+    }
+
+    /**
+     * 修改职位
+     * @param position
+     * @return
+     */
     @PostMapping("/edit_position")
     public ResultResponse edit(Position position){
         if (position.getPlevel().isEmpty()){
@@ -66,7 +94,7 @@ public class PositionController {
         if (position.getPosition().isEmpty()){
             position.setPosition(null);
         }
-        if (position.getPsalary().equals(null)){
+        if (position.getPsalary() == null){
             position.setPsalary(null);
         }
 
@@ -79,15 +107,24 @@ public class PositionController {
         return new ResultResponse("系统繁忙!");
     }
 
+    /**
+     * 分页条件查询
+     * @param size
+     * @param pageSize
+     * @param position
+     * @return
+     * @throws Exception
+     */
     @PostMapping("/page_position")
     public ResultResponse page(Integer size,Integer pageSize,Position position) throws Exception {
+        System.out.println(position);
         if (position.getPlevel().isEmpty()){
             position.setPlevel(null);
         }
         if (position.getPosition().isEmpty()){
             position.setPosition(null);
         }
-        if (position.getPsalary().equals(null)){
+        if (position.getPsalary() == null){
             position.setPsalary(null);
         }
         IPage iPage = positionService.pagePosition(size, pageSize, position);

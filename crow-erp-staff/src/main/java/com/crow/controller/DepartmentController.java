@@ -38,13 +38,13 @@ public class DepartmentController {
      */
     @PostMapping("/increase_department")
     public ResultResponse increase(Department department){
-        if (department.getDname() == null){
+        if (department.getDname().isEmpty()){
             return new ResultResponse("新添加部门职位不能为空!");
         }
-        if (department.getPosition() == null){
+        if (department.getPosition().isEmpty()){
             return new ResultResponse("新添加部门职务不能为空");
         }
-        if (department.getDuty() == null){
+        if (department.getDuty().isEmpty()){
             return new ResultResponse("新添加部门职责不能为空");
         }
 

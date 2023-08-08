@@ -24,6 +24,9 @@ public interface PositionMapper {
     @Insert("insert into sys_position(plevel,psalary,position) values (#{plevel},#{psalary},#{position})")
     Boolean insertPosition(Position position);
 
+    @Delete("delete from sys_position where pid=#{pid}")
+    Boolean deletePosition(Integer pid);
+
     @Update({
             "<script>",
             "update sys_position",
@@ -48,11 +51,11 @@ public interface PositionMapper {
             "<script>",
             "select * from sys_position",
             "<where>",
-            "<if test='position.plevel'>dname like  concat('%',#{position.plevel},'%')</if>",
-            "<if test='position.psalary'>or position like  concat('%',#{position.psalary},'%')</if>",
-            "<if test='position.position'>or duty like concat('%',#{position.position},'%')</if>",
+            "<if test='position.plevel'>plevel like  concat('%',#{position.plevel},'%')</if>",
+            "<if test='position.psalary'>or psalary like  concat('%',#{position.psalary},'%')</if>",
+            "<if test='position.position'>or position like concat('%',#{position.position},'%')</if>",
             "</where> order by updated desc",
             "</script>"
     })
-    IPage<Department> pagePosition(IPage page, @Param("position") Position position);
+    IPage<Position> pagePosition(IPage page, @Param("position") Position position);
 }

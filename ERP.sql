@@ -1,4 +1,4 @@
-# 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    令牌
+# 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    令牌
 # https://github.com/HeHuiBinYa/crow-vue.git  前端
 # https://github.com/HeHuiBinYa/crow-erp.git  后端
 
@@ -84,7 +84,7 @@ create table sys_position(
     created datetime default now() comment '记录创建时间',
     updated datetime comment '记录更新时间'
 );
-# 员工表（sys_employee）
+-- 员工表（sys_employee）
 drop table if exists sys_employee;
 create table sys_employee(
     eid int auto_increment primary key comment '序号ID,主键,唯一,自增',

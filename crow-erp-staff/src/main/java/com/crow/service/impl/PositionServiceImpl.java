@@ -33,6 +33,11 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
+    public Boolean deletePosition(Integer pid) {
+        return positionMapper.deletePosition(pid);
+    }
+
+    @Override
     public Boolean updatePosition(Position position) {
         return positionMapper.updateDepatment(position);
     }
@@ -45,7 +50,7 @@ public class PositionServiceImpl implements PositionService {
         if (pageSize <= 0){
             pageSize = 1;
         }
-        Page<Department> page = new Page<>(size,pageSize);
+        Page<Position> page = new Page<>(size,pageSize);
         IPage iPage = positionMapper.pagePosition(page,position);
         return iPage;
     }

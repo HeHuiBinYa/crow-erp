@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 职位表
@@ -21,6 +21,6 @@ public class Position implements Serializable {
     private String plevel;  // 职位等级
     private BigDecimal psalary; // 职位薪资
     private String position;  // 职位
-    private LocalDate created; // 创建时间
-    private LocalDate updated; // 修改时间
+    private LocalDateTime created; // 创建时间
+    private LocalDateTime updated; // 修改时间
 }

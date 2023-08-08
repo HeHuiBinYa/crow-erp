@@ -15,6 +15,7 @@ import com.crow.model.Position;
  */
 public interface PositionService {
     Boolean insertPosition(Position position);
+    Boolean deletePosition(Integer pid);
     Boolean updatePosition(Position position);
     IPage pagePosition(Integer size, Integer pageSize, Position position);
 }
