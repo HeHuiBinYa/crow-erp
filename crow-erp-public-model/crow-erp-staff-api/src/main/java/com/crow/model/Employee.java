@@ -1,6 +1,8 @@
 package com.crow.model;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,7 +17,7 @@ import java.time.LocalDate;
  * @Role
  */
 @Data
-public class EmpLoyee implements Serializable {
+public class Employee implements Serializable {
     private Integer eid;  // 主键 ID
     private String staffid;  // 员工编号
     private String ename;  // 员工姓名

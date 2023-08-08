@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @PackageName:IntelliJ IDEA
  * @ClassName:DepartmentController
@@ -125,5 +127,11 @@ public class DepartmentController {
         }
         IPage iPage = departmentService.pageDepatment(size, pageSize, department);
         return new ResultResponse(iPage);
+    }
+
+    @PostMapping("/query_list")
+    public ResultResponse department_list(){
+        List<Department> departments = departmentService.selectDepatment();
+        return new ResultResponse(departments);
     }
 }

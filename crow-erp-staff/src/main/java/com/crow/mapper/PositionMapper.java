@@ -5,6 +5,8 @@ import com.crow.model.Department;
 import com.crow.model.Position;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * @PackageName:IntelliJ IDEA
  * @ClassName:PositionMapper
@@ -39,7 +41,10 @@ public interface PositionMapper {
             "where pid = #{pid}",
             "</script>"
     })
-    Boolean updateDepatment(Position position);
+    Boolean updatePosition(Position position);
+
+    @Select("select * from sys_position")
+    List<Position> selectPosition();
 
     /**
      * 高级条件分页查询

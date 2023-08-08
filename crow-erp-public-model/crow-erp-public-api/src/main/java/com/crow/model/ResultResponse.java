@@ -21,6 +21,13 @@ public class ResultResponse implements Serializable {
     private String message; // 携带消息
     private Object data;    // 携带数据
 
+    public ResultResponse() {
+        this.code = 333;
+        this.err = false;
+        this.message = "系统繁忙";
+        this.data = "系统繁忙";
+    }
+
     /**
      * 请求成功 200
      * @param date 携带数据

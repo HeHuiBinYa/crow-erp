@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.crow.model.Department;
 import com.crow.model.Position;
 
+import java.util.List;
+
 /**
  * @PackageName:IntelliJ IDEA
  * @ClassName:PositionService
@@ -17,5 +19,6 @@ public interface PositionService {
     Boolean insertPosition(Position position);
     Boolean deletePosition(Integer pid);
     Boolean updatePosition(Position position);
+    List<Position> selectPosition();
     IPage pagePosition(Integer size, Integer pageSize, Position position);
 }

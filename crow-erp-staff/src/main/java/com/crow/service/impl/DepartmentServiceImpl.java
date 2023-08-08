@@ -7,6 +7,9 @@ import com.crow.model.Department;
 import com.crow.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @PackageName:IntelliJ IDEA
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
  * @Role
  */
 @Service
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentMapper departmentMapper;
 
@@ -40,6 +44,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Boolean updateDepatment(Department department) {
         return departmentMapper.updateDepatment(department);
+    }
+
+    @Override
+    public List<Department> selectDepatment() {
+        return departmentMapper.selectDepatment();
     }
 
     @Override

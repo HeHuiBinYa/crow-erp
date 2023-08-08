@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.model.Department;
 
+import java.util.List;
+
 /**
  * @PackageName:IntelliJ IDEA
  * @ClassName:DepartmentService
@@ -17,5 +19,6 @@ public interface DepartmentService {
     Boolean insertDepatment(Department department);
     Boolean deleteDepatment(Integer did);
     Boolean updateDepatment(Department department);
+    List<Department> selectDepatment();
     IPage pageDepatment(Integer size,Integer pageSize, Department department);
 }

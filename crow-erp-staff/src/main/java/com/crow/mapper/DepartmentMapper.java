@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.crow.model.Department;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * 部门
  * @ClassName:DepattmentMapper
@@ -25,6 +27,9 @@ public interface DepartmentMapper {
 
     @Delete("delete from sys_department where did=#{did}")
     Boolean deleteDepatment(Integer did);
+
+    @Select("select * from sys_department")
+    List<Department> selectDepatment();
 
     @Update({
             "<script>",

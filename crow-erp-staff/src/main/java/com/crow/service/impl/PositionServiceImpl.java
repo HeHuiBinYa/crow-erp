@@ -8,6 +8,9 @@ import com.crow.model.Position;
 import com.crow.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @PackageName:IntelliJ IDEA
@@ -19,6 +22,8 @@ import org.springframework.stereotype.Service;
  * @Role
  */
 @Service
+@Transactional
+
 public class PositionServiceImpl implements PositionService {
     private PositionMapper positionMapper;
 
@@ -39,7 +44,12 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Boolean updatePosition(Position position) {
-        return positionMapper.updateDepatment(position);
+        return positionMapper.updatePosition(position);
+    }
+
+    @Override
+    public List<Position> selectPosition() {
+        return positionMapper.selectPosition();
     }
 
     @Override
