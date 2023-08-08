@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @PackageName:IntelliJ IDEA
  * @ClassName:PositionMapper
@@ -129,5 +131,12 @@ public class PositionController {
         }
         IPage iPage = positionService.pagePosition(size, pageSize, position);
         return new ResultResponse(iPage);
+    }
+
+
+    @PostMapping("/list_position")
+    public ResultResponse department_list(){
+        List<Position> positions = positionService.selectPosition();
+        return new ResultResponse(positions);
     }
 }

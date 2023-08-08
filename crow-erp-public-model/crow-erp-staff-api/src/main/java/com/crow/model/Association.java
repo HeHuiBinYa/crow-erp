@@ -1,5 +1,6 @@
 package com.crow.model;
 
+import jakarta.validation.Valid;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @Data
 public class Association implements Serializable {
+    @Valid
     private Employee employee;
     private Position position;
     private Department department;

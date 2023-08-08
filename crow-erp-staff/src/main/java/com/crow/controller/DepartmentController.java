@@ -129,7 +129,7 @@ public class DepartmentController {
         return new ResultResponse(iPage);
     }
 
-    @PostMapping("/query_list")
+    @PostMapping("/list_department")
     public ResultResponse department_list(){
         List<Department> departments = departmentService.selectDepatment();
         return new ResultResponse(departments);

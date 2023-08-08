@@ -5,6 +5,7 @@ import com.crow.model.Employee;
 import com.crow.service.EmployeeService;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Date 2023/8/8 8:49
  * @Role
  */
-@Mapper
+@Service
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeMapper employeeMapper;
