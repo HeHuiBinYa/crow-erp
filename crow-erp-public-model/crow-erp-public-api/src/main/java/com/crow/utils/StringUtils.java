@@ -34,6 +34,6 @@ public class StringUtils {
 
     public static String odd_numbers(String odd_numbers){
         LocalDateTime now = LocalDateTime.now();
-        return odd_numbers+"0"+now.getYear()+"0"+now.getMonth().getValue()+"0"+now.getHour()+"0"+now.getSecond();
+        return odd_numbers+"0"+now.getYear()+"0"+now.getMonth().getValue()+"0"+now.getHour()+now.getMinute()+"0"+now.getSecond();
     }
 }

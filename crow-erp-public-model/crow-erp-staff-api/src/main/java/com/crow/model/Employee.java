@@ -9,7 +9,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 员工表
@@ -31,9 +31,8 @@ public class Employee implements Serializable {
     @NotEmpty(message = "员工性别不能为空")
     private String sex;  // 员工性别
 
-    @NotNull
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate birth;  // 出生日期
+    @NotNull(message = "出生日期不能为空")
+    private LocalDateTime birth;  // 出生日期
 
     @NotEmpty(message = "出生地址不能为空")
     private String place;  // 出生地址
@@ -42,15 +41,16 @@ public class Employee implements Serializable {
     private Integer age;  // 员工年龄
 
     @NotEmpty(message = "员工电话不能为空")
+    @Size(min = 11,max = 11,message = "电话格式不正确")
     private String tel;  // 员工电话
 
     @NotEmpty(message = "身份证号码不能为空")
     @Cid
     private String card;  // 身份证号码
 
-    private LocalDate entrytime;  // 入职时间
-    private LocalDate leavetim;   // 离职时间
+    private LocalDateTime entrytime;  // 入职时间
+    private LocalDateTime leavetim;   // 离职时间
     private String state;  // 在职状态
-    private LocalDate created;  // 创建时间
-    private LocalDate updated;  // 修改时间
+    private LocalDateTime created;  // 创建时间
+    private LocalDateTime updated;  // 修改时间
 }

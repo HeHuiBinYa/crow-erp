@@ -32,12 +32,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Boolean insertDepatment(Department department) {
-        return departmentMapper.insertDepatment(department);
+        return departmentMapper.insertDepartment(department);
     }
 
     @Override
     public Boolean deleteDepatment(Integer did) {
-        return departmentMapper.deleteDepatment(did);
+        return departmentMapper.deleteDepartment(did);
     }
 
 
@@ -48,7 +48,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<Department> selectDepatment() {
-        return departmentMapper.selectDepatment();
+        return departmentMapper.selectDepartment();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class DepartmentServiceImpl implements DepartmentService {
             pageSize = 1;
         }
         Page<Department> page = new Page<>(size,pageSize);
-        IPage iPage = departmentMapper.pageDepatment(page, department);
+        IPage iPage = departmentMapper.pageDepartment(page, department);
         return iPage;
     }
 }

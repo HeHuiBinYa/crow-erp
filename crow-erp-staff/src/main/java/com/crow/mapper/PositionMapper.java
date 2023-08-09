@@ -46,6 +46,17 @@ public interface PositionMapper {
     @Select("select * from sys_position")
     List<Position> selectPosition();
 
+    @Select("select * from sys_position p inner join sys_emp_association a on p.pid=a.pid where a.eid = #{eid}")
+    @Results(id = "associationMap",value = {
+            @Result(property = "pid", column = "pid"),
+            @Result(property = "plevel", column = "plevel"),
+            @Result(property = "psalary", column = "psalary"),
+            @Result(property = "position", column = "position"),
+            @Result(property = "created", column = "created"),
+            @Result(property = "updated", column = "updated")
+    })
+    Position selectPositionMap(Integer eid);
+
     /**
      * 高级条件分页查询
      * @param page

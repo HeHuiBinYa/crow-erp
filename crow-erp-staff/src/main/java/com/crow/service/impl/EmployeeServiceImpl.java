@@ -31,4 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Boolean insertEmployee(Employee employee) {
         return employeeMapper.insertEmployee(employee);
     }
+
+    @Override
+    public Boolean updateEmployee(Employee employee) {
+        return employeeMapper.updateEmployee(employee);
+    }
 }

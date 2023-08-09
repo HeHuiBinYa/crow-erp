@@ -2,6 +2,7 @@ package com.crow.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.crow.model.Department;
+import com.crow.model.Position;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -23,13 +24,16 @@ public interface DepartmentMapper {
      * @return
      */
     @Insert("insert into sys_department(dname,position,duty) values (#{dname},#{position},#{duty})")
-    Boolean insertDepatment(Department department);
+    Boolean insertDepartment(Department department);
 
     @Delete("delete from sys_department where did=#{did}")
-    Boolean deleteDepatment(Integer did);
+    Boolean deleteDepartment(Integer did);
 
     @Select("select * from sys_department")
-    List<Department> selectDepatment();
+    List<Department> selectDepartment();
+
+    @Select("select * from sys_department d inner join sys_emp_association a on p.did=a.did where a.eid = #{eid}")
+    List<Position> selectDepartmentMap(Integer eid);
 
     @Update({
             "<script>",
@@ -55,5 +59,5 @@ public interface DepartmentMapper {
                "</where> order by updated desc",
             "</script>"
     })
-    IPage<Department> pageDepatment(IPage page,@Param("department") Department department);
+    IPage<Department> pageDepartment(IPage page,@Param("department") Department department);
 }

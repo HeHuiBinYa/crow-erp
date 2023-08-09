@@ -1,6 +1,6 @@
 package com.crow.config;
 
-import com.crow.formatters.StringToLocaDataFormatter;
+import com.crow.formatters.StringToLocalDataFormatter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,6 +12,6 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToLocaDataFormatter());
+        registry.addConverter(new StringToLocalDataFormatter());
     }
 }

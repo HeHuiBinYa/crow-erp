@@ -21,4 +21,40 @@ public class Association implements Serializable {
     private Employee employee;
     private Position position;
     private Department department;
+
+    public Association() {
+        if (this.getEmployee() == null){
+            this.setEmployee(new Employee());
+        }
+        if (this.getPosition() == null){
+            this.setPosition(new Position());
+        }
+        if (this.getDepartment() == null){
+            this.setDepartment(new Department());
+        }
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

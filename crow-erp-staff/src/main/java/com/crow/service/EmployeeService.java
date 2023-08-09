@@ -13,4 +13,5 @@ import com.crow.model.Employee;
  */
 public interface EmployeeService {
     Boolean insertEmployee(Employee employee);
+    Boolean updateEmployee(Employee employee);
 }
