@@ -1,10 +1,13 @@
 package com.crow.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crow.model.Columnar;
+import com.crow.model.ColumnarList;
 import com.crow.model.Department;
 import com.crow.model.ResultResponse;
 import com.crow.service.DepartmentService;
 import com.crow.utils.RedisUtils;
+import com.crow.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,9 +132,20 @@ public class DepartmentController {
         return new ResultResponse(iPage);
     }
 
+    /**
+     * 查询所有
+     * @return
+     */
     @PostMapping("/list_department")
     public ResultResponse department_list(){
         List<Department> departments = departmentService.selectDepatment();
         return new ResultResponse(departments);
+    }
+
+    @PostMapping("/columnarDepartment")
+    public ResultResponse columnarDepartment(){
+        Columnar[] columnars = departmentService.columnarDepartment();
+        ColumnarList columnarList = StringUtils.arrayToList(columnars);
+        return new ResultResponse(columnarList);
     }
 }

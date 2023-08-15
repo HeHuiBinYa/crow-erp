@@ -19,6 +19,8 @@
         <module>crow-erp-staff-api</module>
         <module>crow-erp-mvc-config-api</module>
         <module>crow-erp-inventopy-api</module>
+        <module>crow-erp-design-api</module>
+        <module>crow-erp-product-api</module>
     </modules>
 
     <properties>

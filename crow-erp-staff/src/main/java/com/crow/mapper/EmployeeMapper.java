@@ -35,4 +35,12 @@ public interface EmployeeMapper {
             "</script>"
     })
     Boolean updateEmployee(Employee employee);
+
+    @Select("select * from sys_employee emp inner join CROW_ERP_USER.sys_emp_association ass on emp.eid=ass.eid where ass.aid = #{rid}")
+    Employee selectEmployeeOne(Integer rid);
+
+    @Select("select se.* from CROW_ERP_USER.SYS_ACCOUNT acc\n" +
+            "inner join CROW_ERP_USER.sys_emp_association sea on acc.AID = sea.aid\n" +
+            "inner join sys_employee se on sea.eid = se.eid where acc.TOK=#{tok}")
+    Employee queryEmployeeTok(@Param("tok") String tok);
 }

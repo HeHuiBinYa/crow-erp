@@ -1,12 +1,11 @@
 package com.crow.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.crow.model.Department;
-import com.crow.model.Position;
-import com.crow.model.ResultResponse;
+import com.crow.model.*;
 import com.crow.service.DepartmentService;
 import com.crow.service.PositionService;
 import com.crow.utils.RedisUtils;
+import com.crow.utils.StringUtils;
 import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -138,5 +137,12 @@ public class PositionController {
     public ResultResponse department_list(){
         List<Position> positions = positionService.selectPosition();
         return new ResultResponse(positions);
+    }
+
+    @PostMapping("/columnarPosition")
+    public ResultResponse columnarDepartment(){
+        Columnar[] columnars = positionService.columnarPosition();
+        ColumnarList columnarList = StringUtils.arrayToList(columnars);
+        return new ResultResponse(columnarList);
     }
 }

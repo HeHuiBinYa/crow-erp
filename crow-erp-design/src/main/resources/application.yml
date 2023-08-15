@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      config:
+#        server-addr: 127.0.0.1:8848  #单节点
+        server-addr: 10.0.0.1:8847,10.0.0.1:8849,10.0.0.1:8851  # 集群
+        namespace: crow-erp-config   # 命名空间
+        group: crow-erp-config       # 组名
+        file-extension: yaml         # 扩展名
+  config:
+    import: nacos:crow-erp-design-config,nacos:crow-erp-public # 多个已 , 隔开
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false

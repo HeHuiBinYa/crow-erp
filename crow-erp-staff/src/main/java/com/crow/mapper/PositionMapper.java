@@ -1,6 +1,7 @@
 package com.crow.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 import com.crow.model.Position;
 import org.apache.ibatis.annotations.*;
@@ -74,4 +75,9 @@ public interface PositionMapper {
             "</script>"
     })
     IPage<Position> pagePosition(IPage page, @Param("position") Position position);
+
+    @Select("select sp.position name,count(emp.eid) count from sys_employee emp\n" +
+            "    inner join sys_emp_association sea on emp.eid = sea.eid\n" +
+            "    right join sys_position sp on sea.pid = sp.pid group by sp.position")
+    Columnar[] columnarPosition();
 }

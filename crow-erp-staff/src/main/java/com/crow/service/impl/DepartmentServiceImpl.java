@@ -3,6 +3,7 @@ package com.crow.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.mapper.DepartmentMapper;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 import com.crow.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,5 +63,10 @@ public class DepartmentServiceImpl implements DepartmentService {
         Page<Department> page = new Page<>(size,pageSize);
         IPage iPage = departmentMapper.pageDepartment(page, department);
         return iPage;
+    }
+
+    @Override
+    public Columnar[] columnarDepartment() {
+        return departmentMapper.columnarDepartment();
     }
 }

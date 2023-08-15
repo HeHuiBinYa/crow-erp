@@ -75,4 +75,15 @@ public class ResultResponse implements Serializable {
         this.message = message;
         this.data = null;
     }
+
+    /**
+     * @param code  状态码
+     * @param data  携带数据
+     */
+    public ResultResponse(Integer code, Object data){
+        this.code = code;
+        this.err = true;
+        this.message = "请求成功";
+        this.data = data;
+    }
 }

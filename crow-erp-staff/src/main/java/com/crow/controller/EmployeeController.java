@@ -40,11 +40,29 @@ public class EmployeeController {
         this.associationService = associationService;
     }
 
+    @PostMapping("/getAemployee")
+    public ResultResponse getAemployee(String tok){
+        Employee employee = employeeService.queryEmployeeTok(tok);
+
+        if (employee != null){
+            return new ResultResponse(employee);
+        }
+
+        return new ResultResponse();
+    }
+
     @GetMapping("/employee_id")
     public ResultResponse employee_id(){
         return new ResultResponse(200,false,"请求成功",StringUtils.odd_numbers(staff));
     }
 
+    /**
+     * 添加员工部门职位信息
+     * @param employee
+     * @param did
+     * @param pid
+     * @return
+     */
     @PostMapping("increase_association")
     public ResultResponse insertEmployee(@Valid Employee employee,Integer did,Integer pid){
         System.out.println(employee);
@@ -70,6 +88,13 @@ public class EmployeeController {
         return new ResultResponse();
     }
 
+    /**
+     * 修改员工部门职位信息
+     * @param employee
+     * @param did
+     * @param pid
+     * @return
+     */
     @PutMapping("/edit_association")
     public ResultResponse updatedEmployee(@Valid Employee employee,Integer did,Integer pid){
         System.out.println(employee);
@@ -87,6 +112,11 @@ public class EmployeeController {
         return new ResultResponse();
     }
 
+    /**
+     * 一对一多条件分页
+     * @param employeeVo
+     * @return
+     */
     @PostMapping("/page_association")
     public ResultResponse pageAssociation(@Valid EmployeeVo employeeVo){
         System.out.println(employeeVo);
@@ -123,6 +153,21 @@ public class EmployeeController {
 
         if (page != null){
             return new ResultResponse(page);
+        }
+
+        return new ResultResponse();
+    }
+
+    /**
+     * 获得账号绑定个人信息
+     * @param rid
+     * @return
+     */
+    @GetMapping("/getInformation")
+    public ResultResponse getinformation(Integer rid){
+        if (rid != null){
+            Employee one = employeeService.selectEmployeeOne(rid);
+            return new ResultResponse(one);
         }
 
         return new ResultResponse();

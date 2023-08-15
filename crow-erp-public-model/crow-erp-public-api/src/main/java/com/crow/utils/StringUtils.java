@@ -1,5 +1,7 @@
 package com.crow.utils;
 
+import com.crow.model.Columnar;
+import com.crow.model.ColumnarList;
 import io.netty.util.internal.ReflectionUtil;
 import org.springframework.data.util.ReflectionUtils;
 
@@ -35,5 +37,21 @@ public class StringUtils {
     public static String odd_numbers(String odd_numbers){
         LocalDateTime now = LocalDateTime.now();
         return odd_numbers+"0"+now.getYear()+"0"+now.getMonth().getValue()+"0"+now.getHour()+now.getMinute()+"0"+now.getSecond();
+    }
+
+    /**
+     * 状型图数组转List集合
+     * @param columnars
+     * @return
+     */
+    public static ColumnarList arrayToList(Columnar[] columnars){
+        ColumnarList columnarList = new ColumnarList();
+
+        for (int i = 0; i < columnars.length; i++) {
+            columnarList.getNameList().add(columnars[i].getName());
+            columnarList.getCountList().add(columnars[i].getCount());
+        }
+
+        return columnarList;
     }
 }

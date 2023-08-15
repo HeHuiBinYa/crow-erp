@@ -36,4 +36,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Boolean updateEmployee(Employee employee) {
         return employeeMapper.updateEmployee(employee);
     }
+
+    @Override
+    public Employee selectEmployeeOne(Integer rid) {
+        return employeeMapper.selectEmployeeOne(rid);
+    }
+
+    @Override
+    public Employee queryEmployeeTok(String tok) {
+        return employeeMapper.queryEmployeeTok(tok);
+    }
 }

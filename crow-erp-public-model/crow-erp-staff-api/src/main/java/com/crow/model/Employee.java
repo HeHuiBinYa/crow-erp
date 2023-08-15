@@ -47,7 +47,6 @@ public class Employee implements Serializable {
     @NotEmpty(message = "身份证号码不能为空")
     @Cid
     private String card;  // 身份证号码
-
     private LocalDateTime entrytime;  // 入职时间
     private LocalDateTime leavetim;   // 离职时间
     private String state;  // 在职状态

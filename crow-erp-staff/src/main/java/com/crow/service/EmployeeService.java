@@ -1,6 +1,7 @@
 package com.crow.service;
 
 import com.crow.model.Employee;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * @PackageName:IntelliJ IDEA
@@ -14,4 +15,6 @@ import com.crow.model.Employee;
 public interface EmployeeService {
     Boolean insertEmployee(Employee employee);
     Boolean updateEmployee(Employee employee);
+    Employee selectEmployeeOne(Integer rid);
+    Employee queryEmployeeTok(String tok);
 }

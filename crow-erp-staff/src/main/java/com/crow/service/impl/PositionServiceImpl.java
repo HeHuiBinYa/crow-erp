@@ -3,6 +3,7 @@ package com.crow.service.impl;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.mapper.PositionMapper;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 import com.crow.model.Position;
 import com.crow.service.PositionService;
@@ -63,5 +64,10 @@ public class PositionServiceImpl implements PositionService {
         Page<Position> page = new Page<>(size,pageSize);
         IPage iPage = positionMapper.pagePosition(page,position);
         return iPage;
+    }
+
+    @Override
+    public Columnar[] columnarPosition() {
+        return positionMapper.columnarPosition();
     }
 }

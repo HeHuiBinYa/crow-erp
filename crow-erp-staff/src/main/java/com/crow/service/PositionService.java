@@ -1,6 +1,7 @@
 package com.crow.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 import com.crow.model.Position;
 
@@ -21,4 +22,5 @@ public interface PositionService {
     Boolean updatePosition(Position position);
     List<Position> selectPosition();
     IPage pagePosition(Integer size, Integer pageSize, Position position);
+    Columnar[] columnarPosition();
 }

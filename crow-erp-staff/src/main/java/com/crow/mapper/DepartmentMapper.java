@@ -1,6 +1,7 @@
 package com.crow.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 import com.crow.model.Position;
 import org.apache.ibatis.annotations.*;
@@ -60,4 +61,9 @@ public interface DepartmentMapper {
             "</script>"
     })
     IPage<Department> pageDepartment(IPage page,@Param("department") Department department);
+
+    @Select("select sd.dname name,count(emp.eid) count from sys_employee emp\n" +
+            "        left join sys_emp_association sea on emp.eid = sea.eid\n" +
+            "        right join sys_department sd on sea.did = sd.did group by sd.dname")
+    Columnar[] columnarDepartment();
 }

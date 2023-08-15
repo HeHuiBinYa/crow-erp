@@ -2,6 +2,7 @@ package com.crow.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.crow.model.Columnar;
 import com.crow.model.Department;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public interface DepartmentService {
     Boolean updateDepatment(Department department);
     List<Department> selectDepatment();
     IPage pageDepatment(Integer size,Integer pageSize, Department department);
+    Columnar[] columnarDepartment();
 }
