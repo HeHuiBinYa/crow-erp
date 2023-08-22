@@ -50,7 +50,13 @@ public class SysMaterialsController {
 
     @PostMapping("/updateSysMaterials")
     public ResultResponse updateSysMaterials(SysMaterials sysMaterials){
-        return new ResultResponse(sysMaterialsService.updateSysMaterials(sysMaterials));
+        Boolean bool = sysMaterialsService.updateSysMaterials(sysMaterials);
+
+        if (bool){
+            return new ResultResponse(true);
+        }
+
+        return new ResultResponse();
     }
 
     @GetMapping("/selectSysMaterialsList")
@@ -67,5 +73,16 @@ public class SysMaterialsController {
     public ResultResponse materialCompositionDesignListNumber() throws InterruptedException {
         TimeUnit.SECONDS.sleep(1);
         return new ResultResponse(200, false,"",StringUtils.odd_numbers(mater));
+    }
+
+    /**
+     * 根据 fid 查询物料
+     * @param fid
+     * @return
+     */
+    @PostMapping("/selectSysMaterialsByFid")
+    public ResultResponse selectSysMaterialsByFid(Integer fid) {
+        List<SysMaterials> sysMaterials = sysMaterialsService.selectSysMaterialsByFid(fid);
+        return new ResultResponse(sysMaterials);
     }
 }

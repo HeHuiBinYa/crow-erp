@@ -1,9 +1,12 @@
-package model;
+package com.crow.model;
 
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,16 +21,18 @@ public class Warehousing implements Serializable {
     private String wagatherid;
     private String wastorer;
     private String wareason;
-    private Double waamountsum;
-    private Double wacostpricesum;
-    private Double wagatheredamountsum;
+    private BigDecimal waamountsum;
+    private BigDecimal wacostpricesum;
+    private BigDecimal wagatheredamountsum;
     private String waremark;
     private String waregister;
-    private LocalDate waregistertime;
+    private LocalDateTime waregistertime;
     private String wachecker;
-    private LocalDate wacheckertime;
+    private LocalDateTime wacheckertime;
     private String wachecktag;
     private String wastoretag;
-    private LocalDate created;
-    private LocalDate updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+
+    private List<Scheduling> schedulings;
 }

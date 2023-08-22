@@ -18,9 +18,6 @@ public class SysMaterials implements Serializable {
     //产品编号
     @Min(value = 1,message = "产品编号不能为空")
     private Integer fid;
-    //设计人
-    @NotEmpty(message = "设计人不能为空")
-    private String designer;
     //登记人
     @NotEmpty(message = "登记人不能为空")
     private String register;
@@ -56,6 +53,4 @@ public class SysMaterials implements Serializable {
     private LocalDateTime created;
     //记录更新时间
     private LocalDateTime updated;
-
-
 }

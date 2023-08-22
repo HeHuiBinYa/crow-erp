@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface SysMaterialsMapper {
     //增加产品物料组成
-    @Insert("insert into sys_materials(design,fid,designer,register,designname,type,munit,amount,price,pricesum,status,created,registertime) "+
-            "values(#{design},#{fid},#{designer},#{register},#{designName},#{type},#{munit},#{amount},#{price},#{priceSum},'S001-0',now(),now())")
+    @Insert("insert into sys_materials(design,fid,register,designname,type,munit,amount,price,pricesum,status,created,registertime,residual) "+
+            "values(#{design},#{fid},#{register},#{designName},#{type},#{munit},#{amount},#{price},#{priceSum},'S001-0',now(),now(),#{amount})")
     Boolean addSysMaterials(SysMaterials sysMaterials);
 
     //删除产品物料组成
@@ -17,11 +17,8 @@ public interface SysMaterialsMapper {
     Boolean deleteSysMaterialsByMid(Integer mid);
 
     //修改产品物料组成
-    @Update("update sys_materials set design=#{design},fid=#{fid},designer=#{designer}," +
-            "register=#{register},registertime=#{registerTime},checker=#{checker}," +
-            "status=#{status},designname=#{designName},type=#{type},describer=#{describer}," +
-            "munit=#{munit},amount=#{amount},residual=#{residual},price=#{price}," +
-            "pricesum=#{priceSum},created=#{created},updated=#{updated} where mid=#{mid}")
+    @Update("update sys_materials set design=#{design},designname=#{designName},describer=#{describer}," +
+            "type=#{type},pricesum=#{priceSum},amount=#{amount},munit=#{munit},price=#{price} where mid=#{mid}")
     Boolean updateSysMaterials(SysMaterials sysMaterials);
 
     //根据id查询产品物料组成
@@ -31,4 +28,8 @@ public interface SysMaterialsMapper {
     //查询所有产品物料组成
     @Select("select * from sys_materials")
     List<SysMaterials> selectSysMaterialsList();
+
+    //根据 fid 查询物料
+    @Select("select * from sys_materials where fid=#{fid}")
+    List<SysMaterials> selectSysMaterialsByFid(Integer fid);
 }

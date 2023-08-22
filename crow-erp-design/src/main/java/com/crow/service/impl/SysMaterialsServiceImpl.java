@@ -34,4 +34,9 @@ public class SysMaterialsServiceImpl implements SysMaterialsService {
     public List<SysMaterials> selectSysMaterialsList() {
         return sysMaterialsMapper.selectSysMaterialsList();
     }
+
+    @Override
+    public List<SysMaterials> selectSysMaterialsByFid(Integer fid) {
+        return sysMaterialsMapper.selectSysMaterialsByFid(fid);
+    }
 }

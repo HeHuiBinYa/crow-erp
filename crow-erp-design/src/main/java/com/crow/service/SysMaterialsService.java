@@ -19,4 +19,7 @@ public interface SysMaterialsService {
 
     //查询所有产品物料组成
     List<SysMaterials> selectSysMaterialsList();
+
+    //根据 fid 查询物料
+    List<SysMaterials> selectSysMaterialsByFid(Integer fid);
 }

@@ -1,16 +1,23 @@
 package com.crow.controller;
 
 import com.alibaba.nacos.shaded.com.google.common.collect.PeekingIterator;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.model.Manufacture;
 import com.crow.model.ResultResponse;
+import com.crow.model.vo.ManufactureVo;
 import com.crow.service.ManufactureService;
+import com.crow.utils.StringUtils;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lx
@@ -18,49 +25,71 @@ import java.util.List;
 @RestController
 @RequestMapping("/product")
 public class ManufactureController {
-    @Autowired
     private ManufactureService manufactureService;
+    @Value("${odd_numbers.product.manufactureid}")
+    private String manufacture;
+    @Value("${odd_numbers.product.maproductid}")
+    private String maproduct;
 
-    @PostMapping("/insert")
-    public ResultResponse insert(Manufacture manufacture){
+    @Autowired
+    public ManufactureController(ManufactureService manufactureService) {
+        this.manufactureService = manufactureService;
+    }
+
+    /**
+     * 生成派工单编号
+     * @return
+     * @throws InterruptedException
+     */
+    @PostMapping("/getSerialnumber1")
+    public ResultResponse getSerialnumber1() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        String s = StringUtils.odd_numbers(manufacture);
+        return new ResultResponse(200,false,"请求成功",s);
+    }
+
+    /**
+     * 生成产品编号
+     * @return
+     * @throws InterruptedException
+     */
+    @PostMapping("/getSerialnumber2")
+    public ResultResponse getSerialnumber2() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        String s = StringUtils.odd_numbers(maproduct);
+        return new ResultResponse(200,false,"请求成功",s);
+    }
+
+    @PostMapping("/insertManufacture")
+    public ResultResponse insertManufacture(@Valid Manufacture manufacture){
         if (manufacture!=null){
-            Boolean aBoolean = manufactureService.insertManufacture(manufacture);
-            if (aBoolean){
-                return  new ResultResponse(true);
+            Boolean bool = manufactureService.insertManufacture(manufacture);
+            if (bool){
+                return  new ResultResponse(200,false,"添加成功",manufacture.getMaid());
             }else {
                 return new ResultResponse(300,"添加失败！");
             }
         }
-        return new ResultResponse("添加数据异常！");
+        return new ResultResponse(200,"添加成功");
     }
 
     /**
-     * 通过id修改审核状态
-     * @param maid
-     * @param machecktag
+     * 修改
+     * @param manufacture
      * @return
      */
-    @PostMapping("/updatemachecktagById")
-    public ResultResponse updatemachecktagById(Integer maid,String machecktag){
-
-        if (maid==null){
-            return new ResultResponse(303,"编号不能为空");
-        }
-        if (machecktag==null){
-            return new ResultResponse(303,"审核状态不能为空");
-        }
-        if(maid!=null&&machecktag!=null){
-            Boolean aBoolean = manufactureService.updatemachecktagById(maid, machecktag);
-            if(aBoolean){
-                return new ResultResponse(true);
-            }
+    @PostMapping("/updateManufactureById")
+    public ResultResponse updatemachecktagById(Manufacture manufacture){
+        Boolean bool = manufactureService.updateManufacture(manufacture);
+        if(bool){
+            return new ResultResponse(true);
         }
 
         return new ResultResponse(303,"参数异常!");
     }
 
 
-    @PostMapping("/deleteById")
+    @PostMapping("/deleteManufactureById")
     public ResultResponse deleteById(Integer id){
         if (id!=null){
             Boolean aBoolean = manufactureService.deleteManufactureById(id);
@@ -74,7 +103,7 @@ public class ManufactureController {
     }
 
 
-    @PostMapping("/selectAll")
+    @PostMapping("/selectManufactureAll")
     public ResultResponse selectAll(){
         List<Manufacture> manufactures = manufactureService.selectAllManufacture();
         if (manufactures!=null){
@@ -85,4 +114,96 @@ public class ManufactureController {
     }
 
 
+    /**
+     * 审核分页
+     * @param size
+     * @param sizePage
+     * @return
+     */
+    @PostMapping("/queryPageManufacture")
+    public ResultResponse queryPageManufacture(Integer size,Integer sizePage){
+        Page<Manufacture> page = manufactureService.queryPageManufacture(size, sizePage);
+
+        return new ResultResponse(page);
+    }
+
+    /**
+     * 审核
+     * @return
+     */
+    @PostMapping("/manufactureExamine")
+    public ResultResponse examine(Manufacture manufacture){
+        Boolean bool = manufactureService.updateExamine(manufacture);
+
+        if (bool){
+            return new ResultResponse(200,"审核完毕");
+        }
+
+        return new ResultResponse();
+    }
+
+    /**
+     * 审核分页
+     * @param size
+     * @param sizePage
+     * @return
+     */
+    @PostMapping("/queryPageManufactureFinished")
+    public ResultResponse queryPageManufactureFinished(Integer size,Integer sizePage){
+        Page<Manufacture> page = manufactureService.queryPageManufactureFinished(size, sizePage);
+
+        return new ResultResponse(page);
+    }
+
+    @PostMapping("/manufactureComplete")
+    public ResultResponse manufactureComplete(Manufacture manufacture){
+        Boolean bool = manufactureService.manufactureComplete(manufacture);
+
+        if (bool){
+            return new ResultResponse(200,true);
+        }
+
+        return new ResultResponse();
+    }
+
+    @PostMapping("/queryManufactureVo")
+    public ResultResponse queryManufactureVo(ManufactureVo manufactureVo){
+        if (manufactureVo.getManufactureid() == ""){
+            manufactureVo.setManufactureid(null);
+        }
+        if (manufactureVo.getMaproductid().equals("")){
+            manufactureVo.setMaproductid(null);
+        }
+        if (manufactureVo.getMaproductname().equals("")){
+            manufactureVo.setMaproductname(null);
+        }
+        if (manufactureVo.getMadesigner() == ""){
+            manufactureVo.setMadesigner(null);
+        }
+        if (manufactureVo.getMachecker() == ""){
+            manufactureVo.setMachecker(null);
+        }
+        if (manufactureVo.getStartMaamount() == ""){
+            manufactureVo.setStartMaamount(null);
+        }
+        if (manufactureVo.getEndMaamount() == ""){
+            manufactureVo.setEndMaamount(null);
+        }
+        if (manufactureVo.getStartMatesteramount() == ""){
+            manufactureVo.setStartMatesteramount(null);
+        }
+        if (manufactureVo.getEndMatesteramount() == ""){
+            manufactureVo.setEndMatesteramount(null);
+        }
+        if (manufactureVo.getMachecktag() == ""){
+            manufactureVo.setMachecktag(null);
+        }
+        if (manufactureVo.getManufacturepriceduretag() == ""){
+            manufactureVo.setManufacturepriceduretag(null);
+        }
+
+        IPage<Manufacture> page = manufactureService.queryManufactureVo(manufactureVo);
+
+        return new ResultResponse(page);
+    }
 }

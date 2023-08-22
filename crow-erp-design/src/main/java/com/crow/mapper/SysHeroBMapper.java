@@ -22,6 +22,9 @@ public interface SysHeroBMapper {
     @Select("select * from sys_heroB where aid=#{aid}")
     List<SysHeroB> selectSysHeroBByBid(Integer aid);
 
+    @Select("select * from sys_heroB where bid=#{bid}")
+    List<SysHeroB> selectSysHeroBByBidb(Integer bid);
+
     //删除二级分类
     @Delete("delete from sys_heroB where bid=#{bid}")
     Boolean deleteSysHeroBByBid(Integer bid);

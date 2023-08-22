@@ -5,36 +5,72 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.model.Procedure;
 import com.crow.model.ResultResponse;
 import com.crow.service.ProcedureService;
+import com.crow.utils.StringUtils;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author lx
  */
+@RefreshScope
 @RestController
 @RequestMapping("/product")
 public class ProcedureController {
-    @Autowired
     private ProcedureService procedureService;
 
+    @Value("${odd_numbers.product.prdetailsnumber}")
+    private String prdetailsnumber;
+    @Value("${odd_numbers.product.prprocedureid}")
+    private String prprocedureid;
 
+    @Autowired
+    public ProcedureController(ProcedureService procedureService) {
+        this.procedureService = procedureService;
+    }
 
-    @PostMapping("/insert")
-    public ResultResponse insertProcedure(Procedure procedure){
+    /**
+     * 生成派工序序号
+     * @return
+     * @throws InterruptedException
+     */
+    @PostMapping("/getProcedure1")
+    public ResultResponse getSerialnumber1() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        String s = StringUtils.odd_numbers(prdetailsnumber);
+        return new ResultResponse(200,false,"请求成功",s);
+    }
+
+    /**
+     * 生成工序编号
+     * @return
+     * @throws InterruptedException
+     */
+    @PostMapping("/getProcedure2")
+    public ResultResponse getSerialnumber2() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
+        String s = StringUtils.odd_numbers(prprocedureid);
+        return new ResultResponse(200,false,"请求成功",s);
+    }
+
+    @PostMapping("/insertProcedure")
+    public ResultResponse insertProcedure(@Valid Procedure procedure){
         Boolean aBoolean = procedureService.insertProcedure(procedure);
         if (aBoolean) {
           return new ResultResponse(true);
         }else{
           return   new ResultResponse(300,"添加失败");
         }
-
     }
 
-    @PostMapping("/deleteById")
+    @PostMapping("/deleteProcedureById")
     public ResultResponse deleteProcedure(Integer id){
         if (id!=null){
             Boolean aBoolean = procedureService.deleteProcedureById(id);
@@ -49,9 +85,8 @@ public class ProcedureController {
 
 
 
-    @PostMapping("/update")
+    @PostMapping("/updateProcedure")
     public ResultResponse updateProcedure(Procedure procedure){
-
         if (procedure!=null){
             Boolean aBoolean = procedureService.updateProcedure(procedure);
             if (aBoolean){
@@ -59,7 +94,6 @@ public class ProcedureController {
             }else {
                 return new ResultResponse(300,"修改失败！");
             }
-
         }
         return new ResultResponse(300,"修改数据异常!");
     }
@@ -70,7 +104,7 @@ public class ProcedureController {
      * @param procedurefinishtag
      * @return
      */
-    @PostMapping("/updateprocedurefinishtagById")
+    @PostMapping("/updateProcedurefinishtagById")
     public ResultResponse updateprocedurefinishtagById(Integer prid,String procedurefinishtag){
 
         if (prid==null){
@@ -92,7 +126,7 @@ public class ProcedureController {
 
 
 
-    @PostMapping("/selectAll")
+    @PostMapping("/selectProcedureAll")
     public ResultResponse selectAllProcedure(Integer pageNumber){
         if(pageNumber==null){
             pageNumber=1;
@@ -106,7 +140,7 @@ public class ProcedureController {
         return new ResultResponse(300,"查询失败!");
     }
 
-    @PostMapping("/selectById")
+    @PostMapping("/selectProcedureById")
     public ResultResponse selectProcedureById(Integer id){
         System.out.println("ID:"+id);
         if (id!=null){
@@ -120,6 +154,16 @@ public class ProcedureController {
     }
 
 
+    @PostMapping("/insertNowProcedure")
+    public ResultResponse insertNowProcedure(Procedure procedure){
+        Boolean bool = procedureService.insertNowProcedure(procedure);
+
+        if (bool){
+            return new ResultResponse(true);
+        }
+
+        return new ResultResponse();
+    }
 
 
 }

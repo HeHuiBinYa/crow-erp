@@ -73,5 +73,5 @@ public interface ProcedureService {
      */
     Boolean updateprocedurefinishtagById(Integer prid, String procedurefinishtag);
 
-
+    Boolean insertNowProcedure(Procedure procedure);
 }

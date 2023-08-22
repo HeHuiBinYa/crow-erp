@@ -25,31 +25,26 @@ public class Manufacture implements Serializable {
     @NotEmpty(message = "产品名称不能为空")
     private String maproductname;
 
-    @Min(value = 1,message = "产品名称不能为空")
+    @Min(value = 0,message = "产品名称不能为空")
     private Integer maamount;
 
-    @Min(value = 1,message = "投产数量不能为空")
+    @Min(value = 0,message = "投产数量不能为空")
     private Integer matesteramount;
-
-    @Min(value = 1,message = "生产计划序号组不能为空")
-    private String maapplyidgroup;
 
     private String  maproductdescribe;
 
-    @Min(value = 1,message = "设计物料总成本不能为空")
+    @Min(value = 0,message = "设计物料总成本不能为空")
     private Integer mamodulecostpricesum;
 
     private Integer marealmodulecostpricesum;
 
-    @Min(value = 1,message = "设计工时总成本不能为空")
+    @Min(value = 0,message = "设计工时总成本不能为空")
     private Integer malabourcostpricesum;
 
     private Integer mareallabourcostpricesum;
 
     @NotEmpty(message = "工单制定人不能为空")
     private String madesigner;
-    @NotEmpty(message = "登记人不能为空")
-    private String maregister;
 
     private String machecker;
     private LocalDate maregistertime;

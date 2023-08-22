@@ -23,6 +23,9 @@ public interface SysHeroCMapper {
     @Select("select * from sys_heroC where bid=#{bid}")
     List<SysHeroC> selectSysHeroCByCid(Integer bid);
 
+    @Select("select * from sys_heroC where cid=#{cid}")
+    SysHeroC selectSysHeroCByCidc(Integer cid);
+
     //删除三级分类
     @Delete("delete from sys_heroC where cid=#{cid}")
     Boolean deleteSysHeroCByCid(Integer cid);

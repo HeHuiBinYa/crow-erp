@@ -37,19 +37,14 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public ResultResponse login(String username, String password,String role){
+    public ResultResponse login(String username, String password){
         if ("".equals(username) || "".equals(password)){
             return new ResultResponse(444,"账号或密码不能为空!");
-        }
-        if ("".equals(role)){
-            return new ResultResponse(444,"登录权限请选择!");
         }
 
         Account acc = null;
         // 判断redis是否存在这个key
         Boolean bool = redisUtils.exists("auth_"+username);
-
-        System.out.println("缓存"+bool);
 
         // 如果等于true就放回缓存的数据信息
         if (bool){
@@ -68,8 +63,6 @@ public class AccountController {
 
         if (acc == null){
             return new ResultResponse(332,"账号或密码错误!");
-        } else if (!acc.getRole().getRole().equals(role)){
-            return new ResultResponse(333,"登录权限不足!");
         }
 
         if (!bool){

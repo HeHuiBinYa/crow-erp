@@ -49,24 +49,24 @@ public interface AssociationMapper {
                "<if test='employeeVo.tel'>or tel like concat('%',#{employeeVo.tel},'%')</if>",  // 电话
                "<if test='employeeVo.place'>or place like concat('%',#{employeeVo.place},'%')</if>", // 出生地址
                "<if test='employeeVo.pid'>or p.pid = #{employeeVo.pid}</if>", // 职位
-               "<if test='employeeVo.did'> d.did = #{employeeVo.did}</if>", // 部门
+               "<if test='employeeVo.did'>or d.did = #{employeeVo.did}</if>", // 部门
                "<if test='employeeVo.state'>and state = #{employeeVo.state}</if>", // 在职状态
 
-               "<if test='employeeVo.tartingAge != null and employeeVo.endAge == null'>or age &gt;= #{employeeVo.tartingAge}</if>",
-               "<if test='employeeVo.tartingAge == null and employeeVo.endAge != null'>or age &lt;= #{employeeVo.endAge}</if>",
-               "<if test='employeeVo.tartingAge != null and employeeVo.endAge != null'>or age &gt;= #{employeeVo.tartingAge} and age &lt;= #{employeeVo.endAge}</if>",
+               "<if test='employeeVo.tartingAge != null and employeeVo.endAge == null'>and age &gt;= #{employeeVo.tartingAge}</if>",
+               "<if test='employeeVo.tartingAge == null and employeeVo.endAge != null'>and age &lt;= #{employeeVo.endAge}</if>",
+               "<if test='employeeVo.tartingAge != null and employeeVo.endAge != null'>and age &gt;= #{employeeVo.tartingAge} and age &lt;= #{employeeVo.endAge}</if>",
 
-               "<if test='employeeVo.initialDateOfBirth != null and employeeVo.endDateOfBirth == null'>or birth &gt;= #{employeeVo.initialDateOfBirth}</if>",
-               "<if test='employeeVo.initialDateOfBirth == null and employeeVo.endDateOfBirth != null'>or birth &lt;= #{employeeVo.endDateOfBirth}</if>",
-               "<if test='employeeVo.initialDateOfBirth != null and employeeVo.endDateOfBirth != null'>or birth &gt;= #{employeeVo.initialDateOfBirth} and birth &lt;= #{employeeVo.endDateOfBirth}</if>",
+               "<if test='employeeVo.initialDateOfBirth != null and employeeVo.endDateOfBirth == null'>and birth &gt;= #{employeeVo.initialDateOfBirth}</if>",
+               "<if test='employeeVo.initialDateOfBirth == null and employeeVo.endDateOfBirth != null'>and birth &lt;= #{employeeVo.endDateOfBirth}</if>",
+               "<if test='employeeVo.initialDateOfBirth != null and employeeVo.endDateOfBirth != null'>and birth &gt;= #{employeeVo.initialDateOfBirth} and birth &lt;= #{employeeVo.endDateOfBirth}</if>",
 
-               "<if test='employeeVo.startDateOfEmployment != null and employeeVo.endOfEmploymentDate == null'>or entrytime &gt;= #{employeeVo.startDateOfEmployment}</if>",
-               "<if test='employeeVo.startDateOfEmployment == null and employeeVo.endOfEmploymentDate != null'>or entrytime &lt;= #{employeeVo.endOfEmploymentDate}</if>",
-               "<if test='employeeVo.startDateOfEmployment != null and employeeVo.endOfEmploymentDate != null'>or entrytime &gt;= #{employeeVo.startDateOfEmployment} and entrytime &lt;= #{employeeVo.endOfEmploymentDate}</if>",
+               "<if test='employeeVo.startDateOfEmployment != null and employeeVo.endOfEmploymentDate == null'>and entrytime &gt;= #{employeeVo.startDateOfEmployment}</if>",
+               "<if test='employeeVo.startDateOfEmployment == null and employeeVo.endOfEmploymentDate != null'>and entrytime &lt;= #{employeeVo.endOfEmploymentDate}</if>",
+               "<if test='employeeVo.startDateOfEmployment != null and employeeVo.endOfEmploymentDate != null'>and entrytime &gt;= #{employeeVo.startDateOfEmployment} and entrytime &lt;= #{employeeVo.endOfEmploymentDate}</if>",
 
-               "<if test='employeeVo.departureDate != null and employeeVo.terminationDate == null'>or leavetime &gt;= #{employeeVo.departureDate}</if>",
-               "<if test='employeeVo.departureDate == null and employeeVo.terminationDate != null'>or leavetime &lt;= #{employeeVo.terminationDate}</if>",
-               "<if test='employeeVo.departureDate != null and employeeVo.terminationDate != null'>or leavetime &gt;= #{employeeVo.departureDate} and leavetime &lt;= #{employeeVo.terminationDate}</if>",
+               "<if test='employeeVo.departureDate != null and employeeVo.terminationDate == null'>and leavetime &gt;= #{employeeVo.departureDate}</if>",
+               "<if test='employeeVo.departureDate == null and employeeVo.terminationDate != null'>and leavetime &lt;= #{employeeVo.terminationDate}</if>",
+               "<if test='employeeVo.departureDate != null and employeeVo.terminationDate != null'>and leavetime &gt;= #{employeeVo.departureDate} and leavetime &lt;= #{employeeVo.terminationDate}</if>",
             "</where>",
             "</script>"
     })

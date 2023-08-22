@@ -1,7 +1,10 @@
 package com.crow.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.model.Manufacture;
 import com.crow.model.Procedure;
+import com.crow.model.vo.ManufactureVo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -11,7 +14,6 @@ import java.util.List;
  */
 public interface ManufactureService {
     /**添加
-     *
      * @param manufacture
      * @return
      */
@@ -60,5 +62,40 @@ public interface ManufactureService {
      */
     Boolean updatemachecktagById(Integer id, String machecktag);
 
+    /**
+     * 审核分页
+     * @param size
+     * @param sizePage
+     * @return
+     */
+    Page<Manufacture> queryPageManufacture(Integer size,Integer sizePage);
 
+    /**
+     * 审核
+     * @param manufacture
+     * @return
+     */
+    Boolean updateExamine(Manufacture manufacture);
+
+    /**
+     * 完工分页
+     * @param size
+     * @param sizePage
+     * @return
+     */
+    Page<Manufacture> queryPageManufactureFinished(Integer size,Integer sizePage);
+
+    /**
+     * 完工
+     * @param manufacture
+     * @return
+     */
+    Boolean manufactureComplete(Manufacture manufacture);
+
+    /**
+     * 分页
+     * @param manufactureVo
+     * @return
+     */
+    IPage<Manufacture> queryManufactureVo(ManufactureVo manufactureVo);
 }

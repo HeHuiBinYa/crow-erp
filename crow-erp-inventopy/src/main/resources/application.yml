@@ -8,3 +8,8 @@ spring:
         file-extension: yaml         # 扩展名
   config:
     import: nacos:crow-erp-inventopy-config,nacos:crow-erp-public # 多个已 , 隔开
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false

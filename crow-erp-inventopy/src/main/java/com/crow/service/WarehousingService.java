@@ -1,10 +1,9 @@
 package com.crow.service;
 
-import com.crow.mapper.WarehousingMapper;
-import model.Warehousing;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.crow.model.Scheduling;
+import com.crow.model.Warehousing;
+import com.crow.model.WarehousingVo;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,11 +13,10 @@ import java.util.List;
  * @Description:入库申请管理
  */
 public interface WarehousingService {
-    Boolean insertWarehousing(WarehousingMapper warehousing);
-    Boolean deleteWarehousing(Integer waid);
+    Boolean insertWarehousing(Warehousing warehousing);
+    Boolean updateWarehousingVo(Warehousing warehousing);
+    Boolean updateWachecktag(Warehousing warehousing);
     Boolean updateWarehousing(Warehousing warehousing);
-    List<Warehousing> selectWarehousing();
-    Warehousing selectOneWarehousing(Integer waid);
-
-
+    IPage<Warehousing> examinePageWarehousing(Integer size,Integer sizePage);
+    IPage<Warehousing> queryWarehousingVo(WarehousingVo warehousingVo);
 }

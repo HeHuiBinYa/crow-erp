@@ -3,6 +3,7 @@ package com.crow.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.crow.model.ResultResponse;
 import com.crow.model.SysFile;
+import com.crow.model.SysFileVo;
 import com.crow.service.SysFileService;
 import com.crow.utils.StringUtils;
 import jakarta.validation.Valid;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RefreshScope
@@ -25,8 +27,8 @@ public class SysFileController {
     private String fileId;
 
     @Autowired
-    public SysFileController(SysFileService sysFileService){
-        this.sysFileService=sysFileService;
+    public SysFileController(SysFileService sysFileService) {
+        this.sysFileService = sysFileService;
     }
 
     /**
@@ -57,10 +59,7 @@ public class SysFileController {
     private ResultResponse selectSysFileByFid(Integer fid){
         return new ResultResponse(sysFileService.selectSysFileByFid(fid));
     }
-    @GetMapping("/selectSysFileList")
-    private ResultResponse selectSysFileList(){
-        return new ResultResponse(sysFileService.selectSysFileList());
-    }
+
 
     /**
      * 产品编号
@@ -72,6 +71,12 @@ public class SysFileController {
         return new ResultResponse(200, false,"",StringUtils.odd_numbers(fileId));
     }
 
+    /**
+     * 档案审核分页
+     * @param size
+     * @param sizePage
+     * @return
+     */
     @PostMapping("/queryPageSysFile")
     public ResultResponse queryPageSysFile(Integer size,Integer sizePage){
         if (size <= 0){
@@ -84,6 +89,11 @@ public class SysFileController {
         return new ResultResponse();
     }
 
+    /**
+     * 档案审核
+     * @param sysFile
+     * @return
+     */
     @PostMapping("/examineSysFile")
     public ResultResponse examineSysFile(SysFile sysFile){
         System.out.println(sysFile);
@@ -91,6 +101,74 @@ public class SysFileController {
 
         if (bool){
             return new ResultResponse(200, true);
+        }
+
+        return new ResultResponse();
+    }
+
+    /**
+     * 查询所有档案
+     * @return
+     */
+    @PostMapping("/queryFileList")
+    public ResultResponse queryFileList(){
+        List<SysFile> sysFiles = sysFileService.queryFileList();
+
+        sysFiles.forEach(System.out::println);
+
+        return new ResultResponse(sysFiles);
+    }
+
+    @PostMapping("/querySysFileVo")
+    public ResultResponse querySysFileVo(SysFileVo sysFileVo){
+        if (sysFileVo.getPid() == ""){
+            sysFileVo.setPid(null);
+        }
+        if (sysFileVo.getName() == ""){
+            sysFileVo.setName(null);
+        }
+        if (sysFileVo.getGrou() == ""){
+            sysFileVo.setGrou(null);
+        }
+        if (sysFileVo.getType() == ""){
+            sysFileVo.setType(null);
+        }
+        if (sysFileVo.getUnit() == ""){
+            sysFileVo.setUnit(null);
+        }
+        if (sysFileVo.getRegister() == ""){
+            sysFileVo.setRegister(null);
+        }
+        if (sysFileVo.getChecker() == ""){
+            sysFileVo.setChecker(null);
+        }
+        if (sysFileVo.getChecktag() == ""){
+            sysFileVo.setChecktag(null);
+        }
+
+
+        IPage<SysFile> page = sysFileService.querySysFileVo(sysFileVo.getSize(), sysFileVo.getSizePage(), sysFileVo);
+
+        return new ResultResponse(page);
+    }
+
+    @PostMapping("/updateFile")
+    public ResultResponse updateFile(SysFile sysFile){
+        Boolean bool = sysFileService.updateFile(sysFile);
+
+        if (bool){
+            return new ResultResponse(true);
+        }
+
+        return new ResultResponse();
+    }
+
+    @PostMapping("/updateCheckTag")
+    public ResultResponse updateCheckTag(Integer fid){
+        Boolean bool = sysFileService.updateCheckTag(fid);
+
+        if (bool){
+            return new ResultResponse(true);
         }
 
         return new ResultResponse();

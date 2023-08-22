@@ -1,8 +1,11 @@
 package com.crow.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.mapper.ManufactureMapper;
 import com.crow.model.Manufacture;
 import com.crow.model.Procedure;
+import com.crow.model.vo.ManufactureVo;
 import com.crow.service.ManufactureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +54,46 @@ public class ManufactureServiceImpl implements ManufactureService {
     @Override
     public Boolean updatemachecktagById(Integer id, String machecktag) {
         return manufactureMapper.updatemachecktagById(id,machecktag);
+    }
+
+    @Override
+    public Page<Manufacture> queryPageManufacture(Integer size, Integer sizePage) {
+        if (size <= 0){
+            size = 1;
+        }
+        Page<Manufacture> page = new Page<>(size,sizePage);
+        return manufactureMapper.queryPageManufacture(page);
+    }
+
+    @Override
+    public Boolean updateExamine(Manufacture manufacture) {
+        return manufactureMapper.updateExamine(manufacture);
+    }
+
+    @Override
+    public Page<Manufacture> queryPageManufactureFinished(Integer size, Integer sizePage) {
+        if (size <= 0){
+            size = 1;
+        }
+        Page page = new Page(size,sizePage);
+        return manufactureMapper.queryPageManufactureFinished(page);
+    }
+
+    @Override
+    public Boolean manufactureComplete(Manufacture manufacture) {
+        return manufactureMapper.manufactureComplete(manufacture);
+    }
+
+    @Override
+    public IPage<Manufacture> queryManufactureVo(ManufactureVo manufactureVo) {
+        if (manufactureVo.getSize() <= 0){
+            manufactureVo.setSize(1);
+        }
+
+        Page page = new Page(manufactureVo.getSize(),manufactureVo.getSizePage());
+
+        IPage<Manufacture> iPage = manufactureMapper.queryManufactureVo(page, manufactureVo);
+
+        return iPage;
     }
 }

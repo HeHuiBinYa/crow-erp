@@ -27,6 +27,7 @@ public class ProcedureServiceImpl implements ProcedureService {
     }
 
 
+
     @Override
     public Boolean insertProcedure(Procedure procedure) {
         return procedureMapper.insertProcedure(procedure);
@@ -75,5 +76,10 @@ public class ProcedureServiceImpl implements ProcedureService {
     @Override
     public Boolean updateprocedurefinishtagById(Integer prid, String procedurefinishtag) {
         return procedureMapper.updateprocedurefinishtagById(prid,procedurefinishtag);
+    }
+
+    @Override
+    public Boolean insertNowProcedure(Procedure procedure) {
+        return procedureMapper.insertNowProcedure(procedure);
     }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.crow.mapper.SysFileMapper;
 import com.crow.model.SysFile;
+import com.crow.model.SysFileVo;
 import com.crow.service.SysFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,11 +38,6 @@ public class SysFileServiceImpl implements SysFileService {
     }
 
     @Override
-    public List<SysFile> selectSysFileList() {
-        return sysFileMapper.selectSysFileList();
-    }
-
-    @Override
     public IPage<SysFile> queryPageSysFile(Integer size,Integer sizePage) {
         Page<SysFile> page = new Page<>(size,sizePage);
         return sysFileMapper.queryPageSysFile(page);
@@ -50,5 +46,30 @@ public class SysFileServiceImpl implements SysFileService {
     @Override
     public Boolean examineSysFile(SysFile sysFile) {
         return sysFileMapper.examineSysFile(sysFile);
+    }
+
+    @Override
+    public List<SysFile> queryFileList() {
+        return sysFileMapper.queryFileList();
+    }
+
+    @Override
+    public IPage<SysFile> querySysFileVo(Integer size, Integer sizePage, SysFileVo sysFileVo) {
+        if (size <= 0){
+            size = 1;
+        }
+        Page page = new Page<>(size,sizePage);
+        IPage<SysFile> iPage = sysFileMapper.querySysFileVo(page, sysFileVo);
+        return iPage;
+    }
+
+    @Override
+    public Boolean updateFile(SysFile sysFile) {
+        return sysFileMapper.updateFile(sysFile);
+    }
+
+    @Override
+    public Boolean updateCheckTag(Integer fid) {
+        return sysFileMapper.updateCheckTag(fid);
     }
 }

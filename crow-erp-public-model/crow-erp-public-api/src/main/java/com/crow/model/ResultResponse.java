@@ -24,8 +24,8 @@ public class ResultResponse implements Serializable {
     public ResultResponse() {
         this.code = 333;
         this.err = false;
-        this.message = "系统繁忙";
-        this.data = "系统繁忙";
+        this.message = "繁忙";
+        this.data = "繁忙";
     }
 
     /**
@@ -35,7 +35,7 @@ public class ResultResponse implements Serializable {
     public ResultResponse(Object date) {
         this.code = 200;
         this.err = false;
-        this.message = "请求成功";
+        this.message = "成功";
         this.data = date;
     }
 
@@ -83,7 +83,7 @@ public class ResultResponse implements Serializable {
     public ResultResponse(Integer code, Object data){
         this.code = code;
         this.err = true;
-        this.message = "请求成功";
+        this.message = "成功";
         this.data = data;
     }
 }

@@ -26,18 +26,21 @@ public interface ProcedureMapper extends BaseMapper<Procedure> {
             "prreallabourhouramount,prsubtotal,prrealsubtotal," +
             "prmodulesubtotal,prrealmodulesubtotal,prcostprice," +
             "prdemandamount,prrealamount,procedurefinishtag," +
-            "proceduretransfertag) " +
+            "proceduretransfertag,maid) " +
             "values (#{prdetailsnumber},#{prprocedureid}," +
             "#{procedurename},#{prlabourhouramount}," +
             "#{prreallabourhouramount},#{prsubtotal}," +
             "#{prrealsubtotal},#{prmodulesubtotal}," +
             "#{prrealmodulesubtotal},#{prcostprice}," +
             "#{prdemandamount},#{prrealamount}," +
-            "#{procedurefinishtag},#{proceduretransfertag})")
-    @SelectKey(statement = "select LAST_INSERT_ID()",keyProperty ="maid",before = false,resultType = Integer.class)
+            "#{procedurefinishtag},#{proceduretransfertag},#{maid})")
     Boolean insertProcedure(Procedure procedure);
 
-
+    @Insert("insert sys_procedure(prdetailsnumber,prprocedureid,procedurename,prlabourhouramount,prreallabourhouramount,prsubtotal," +
+            "prrealsubtotal,prmodulesubtotal,prrealmodulesubtotal,prcostprice,prdemandamount,prrealamount,maid,procedurefinishtag,proceduretransfertag) " +
+            "values (#{prdetailsnumber},#{prprocedureid},#{procedurename},#{prlabourhouramount},#{prreallabourhouramount},#{prsubtotal}," +
+            "#{prrealsubtotal},#{prmodulesubtotal},#{prrealmodulesubtotal},#{prcostprice},#{prdemandamount},#{prrealamount},#{maid},'G004-0','G005-0')")
+    Boolean insertNowProcedure(Procedure procedure);
 
     /**
      * 修改
@@ -47,23 +50,23 @@ public interface ProcedureMapper extends BaseMapper<Procedure> {
     @Update({"<script>",
             "update sys_procedure ",
             "<set>",
-            "<if test='#{prdetailsnumber}!=null'>prdetailsnumber=#{prdetailsnumber}</if>",
-            "<if test='#{prprocedureid}!=null'>,prprocedureid=#{prprocedureid}</if>",
-            "<if test='#{procedurename}!=null'>,procedurename=#{procedurename}</if>",
-            "<if test='#{prlabourhouramount}!=null'>,prlabourhouramount=#{prlabourhouramount}</if>",
-            "<if test='#{prreallabourhouramount}!=null'>,prreallabourhouramount=#{prreallabourhouramount}</if>",
+            "<if test='prdetailsnumber!=null'>prdetailsnumber=#{prdetailsnumber}</if>",
+            "<if test='prprocedureid!=null'>,prprocedureid=#{prprocedureid}</if>",
+            "<if test='procedurename!=null'>,procedurename=#{procedurename}</if>",
+            "<if test='prlabourhouramount!=null'>,prlabourhouramount=#{prlabourhouramount}</if>",
+            "<if test='prreallabourhouramount!=null'>,prreallabourhouramount=#{prreallabourhouramount}</if>",
 
-            "<if test='#{prsubtotal}!=null'>,prsubtotal=#{prsubtotal}</if>",
-            "<if test='#{prrealsubtotal}!=null'>,prrealsubtotal=#{prrealsubtotal}</if>",
-            "<if test='#{prmodulesubtotal}!=null'>,prmodulesubtotal=#{prmodulesubtotal}</if>",
-            "<if test='#{prrealmodulesubtotal}!=null'>,prrealmodulesubtotal=#{prrealmodulesubtotal}</if>",
-            "<if test='#{prcostprice}!=null'>,prcostprice=#{prcostprice}</if>",
+            "<if test='prsubtotal!=null'>,prsubtotal=#{prsubtotal}</if>",
+            "<if test='prrealsubtotal!=null'>,prrealsubtotal=#{prrealsubtotal}</if>",
+            "<if test='prmodulesubtotal!=null'>,prmodulesubtotal=#{prmodulesubtotal}</if>",
+            "<if test='prrealmodulesubtotal!=null'>,prrealmodulesubtotal=#{prrealmodulesubtotal}</if>",
+            "<if test='prcostprice!=null'>,prcostprice=#{prcostprice}</if>",
 
-            "<if test='#{prdemandamount}!=null'>,prdemandamount=#{prdemandamount}</if>",
-            "<if test='#{prrealamount}!=null'>,prrealamount=#{prrealamount}</if>",
-            "<if test='#{procedurefinishtag}!=null'>,procedurefinishtag=#{procedurefinishtag}</if>",
-            "<if test='#{proceduretransfertag}!=null'>,proceduretransfertag=#{proceduretransfertag}</if>",
-            "<if test='#{maid}!=null'>,maid=#{maid}</if>",
+            "<if test='prdemandamount!=null'>,prdemandamount=#{prdemandamount}</if>",
+            "<if test='prrealamount!=null'>,prrealamount=#{prrealamount}</if>",
+            "<if test='procedurefinishtag!=null'>,procedurefinishtag=#{procedurefinishtag}</if>",
+            "<if test='proceduretransfertag!=null'>,proceduretransfertag=#{proceduretransfertag}</if>",
+            "<if test='maid!=null'>,maid=#{maid}</if>",
 
             "</set>",
             "where  prid=#{prid}",
@@ -84,7 +87,7 @@ public interface ProcedureMapper extends BaseMapper<Procedure> {
      * @param id
      * @return
      */
-    @Delete("delete from  where prid=#{id}")
+    @Delete("delete from sys_procedure  where prid=#{id}")
     Boolean deleteProcedureById(@Param("id") Integer id);
 
     /**分页查询
@@ -116,10 +119,10 @@ public interface ProcedureMapper extends BaseMapper<Procedure> {
 
     /**
      * 通过maid查询当前maid下面的所有生产工序
-     * @param id
+     * @param maid
      * @return
      */
-    @Select("select * from sys_procedure where maid=#{id}")
-    List<Procedure> selectByMaid(@Param("id") Integer id);
+    @Select("select * from sys_procedure where maid=#{maid}")
+    List<Procedure> selectByMaid(Integer maid);
 
 }

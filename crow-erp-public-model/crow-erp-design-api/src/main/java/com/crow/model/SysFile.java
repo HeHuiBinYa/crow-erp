@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -44,21 +45,23 @@ public class SysFile implements Serializable {
     //市场单价
     @Min(value = 1,message = "市场单价不能为空")
     private Double listPrice;
-    //登记人
+    //设计人
     @NotEmpty(message = "登记人不能为空")
     private String register;
     //复核人
     private String checker;
     //复核时间
-    private Date checkTime;
+    private LocalDateTime checkTime;
     //审核标志
     @NotEmpty(message = "审核标志不能为空")
     private String checkTag;
     //记录创建时间
-    private Date created;
+    private LocalDateTime created;
     //记录更新时间
-    private Date updated;
+    private LocalDateTime updated;
 
     private List<SysMaterials> materials;
-
+    private SysHeroA heroA;
+    private SysHeroB heroB;
+    private SysHeroC heroC;
 }

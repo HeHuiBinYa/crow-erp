@@ -12,8 +12,7 @@
     <artifactId>crow-erp-inventopy</artifactId>
 
     <name>crow-erp-inventopy</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+
     <build>
         <plugins>
             <plugin>
@@ -45,6 +44,11 @@
             <artifactId>crow-erp-public-api</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.crow</groupId>
+            <artifactId>crow-erp-mvc-config-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -67,12 +71,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-
-        <!-- 自启动 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
         <!-- web -->
