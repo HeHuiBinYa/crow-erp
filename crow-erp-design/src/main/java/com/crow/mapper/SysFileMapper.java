@@ -95,7 +95,7 @@ public interface SysFileMapper {
     IPage<SysFile> querySysFileVo(IPage iPage,@Param("sysFileVo") SysFileVo sysFileVo);
 
     @Update("update sys_file set register=#{register},name=#{name},aid=#{aid},bid=#{bid},cid=#{cid}," +
-            "type=#{type},unit=#{unit},grou=#{grou},costPrice=#{costPrice},listPrice=#{listPrice},descr=#{descr} where fid=#{fid}")
+            "type=#{type},unit=#{unit},grou=#{grou},costPrice=#{costPrice},listPrice=#{listPrice},descr=#{descr},updated=now() where fid=#{fid}")
     Boolean updateFile(SysFile sysFile);
 
     @Update("update sys_file set checktag='S001-0' where fid=#{fid}")

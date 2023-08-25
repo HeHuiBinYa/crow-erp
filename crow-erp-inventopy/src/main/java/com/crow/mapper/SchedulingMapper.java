@@ -16,8 +16,8 @@ import java.util.List;
  */
 @Mapper
 public interface SchedulingMapper {
-    @Insert("insert into sys_scheduling(scproductid,scproductname,scamount,scamountunit,scubtotal,scgatheredamount,sccostprice,waid,scgathertag) " +
-            "values (#{scproductid},#{scproductname},#{scamount},#{scamountunit},#{scubtotal},#{scgatheredamount},#{sccostprice},#{waid},'K002-1')")
+    @Insert("insert into sys_scheduling(scproductid,scproductname,scamount,scamountunit,scubtotal,sccostprice,waid) " +
+            "values (#{scproductid},#{scproductname},#{scamount},#{scamountunit},#{scubtotal},#{sccostprice},#{waid})")
     Boolean insertScheduling(Scheduling scheduling);
 
     @Select("select * from sys_scheduling where waid=#{waid}")
